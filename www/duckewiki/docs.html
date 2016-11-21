@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang='BR'>
+<head>
+	<meta charset='UTF-8'>
+	<title>Documentação</title>
+</head>
+<body>
+	<fieldset>
+		<legend>main.php</legend>
+		<fieldset><legend>window</legend>
+			<fieldset><legend>divMnu</legend>
+				<fieldset><legend>tblMnu</legend>
+					1 tr, 3 td (primeiro com botão de enviar mensagem, segundo com título, terceiro com frmMnu -> botões)
+				</fieldset>
+			</fieldset>
+			<fieldset><legend>divMain</legend>
+				<fieldset><legend>divText</legend>
+				</fieldset>
+				<fieldset><legend>divTable</legend>
+					<fieldset><legend>divTHead</legend>
+						<fieldset><legend>frmTable</legend>
+							tblHead (tabela "cabeçalho" -> botões)
+						</fieldset>
+					</fieldset>
+					<fieldset><legend>divTBody</legend>
+						tblBody (tabela "corpo" -> linhas com dados)
+					</fieldset>
+				</fieldset>
+				<fieldset><legend>divFoot</legend>
+					botão de exportar
+					<fieldset><legend>frmOffset</legend>
+						botão de offset
+					</fieldset>
+					<fieldset><legend>frmLimit</legend>
+						botão de limit
+					</fieldset>
+				</fieldset>
+			</fieldset>
+		</fieldset>
+		<img src='icon/whsp.png'>
+		<fieldset>
+			<legend>Top Bar (marrom e bege)</legend>
+			<fieldset>
+				<legend>marrom</legend>
+				Título (DuckeWiki)+Link para documentação<BR>
+				Usuário: nome do usuário [id do usuário]. (Link para logout)
+			</fieldset>
+			<fieldset>
+				<legend>bege</legend>
+				<fieldset>
+					<legend>menu 1</legend>
+					botões de inserção/listagem das principais tabelas do sistema:
+					<img src='icon/specimen.jpg'>especímenes, <img src='icon/tree.jpg'>plantas, <img src='icon/diversity.jpg'>táxons, <img src='icon/map.jpg'>locais, <img src='icon/vars.jpg'>variáveis, <img src='icon/people.jpg'>pessoas, <img src='icon/environment.jpg'>hábitats, <img src='icon/note.jpg'>referências bibliográficas
+					e <img src='icon/form.jpg'>formulários. Com o botão normal do mouse, abrem a janela de inserção; com o segundo botão,
+					mostram um menu com a opção de listar todos os registros daquela tabela (Mostrar hábitats,
+					Mostrar pessoas, etc).
+					O último botão <img src='icon/cog1.png'> permite a cada usuário alterar as suas preferências pessoais.
+				</fieldset>
+				<fieldset>
+					<legend>menu 2</legend>
+					Acesso às 4 tabelas principais: checklist taxonômico, especímenes, plantas e localidades/plots.
+				</fieldset>
+			</fieldset>
+		</fieldset>
+		<fieldset>
+			<legend>div -> getTable.php</legend>
+			Aqui aparecem os resultados da seleção feita acima, que inclui os parâmetros
+			tabela (table), ordenação (sort), a partir de que linha começa a mostrar (offset),
+			número de linhas mostradas (limit). Além dessas, há a variável de linguagem (lang), que
+			define a linguagem usada pelo sistema, a partir do menu flutuante no alto à esquerda, com as
+			opções Português Brasileiro (BR), Inglês Estadunidense (US) e Chinês Simplificado (中文).
+		</fieldset>
+	</fieldset>
+	<img src='icon/whsp.png'>
+	<fieldset>
+		<legend>config.php</legend>
+		janela de configuração
+	</fieldset>
+	<img src='icon/whsp.png'>
+	<fieldset>
+		<legend>addX.php</legend>
+		Uma série de arquivos addEsp.php, addPl.php, addLoc.php, addHab.php... cada qual cuidando da inserção,
+		edição e outros detalhes de sua respectiva tabela.
+		<fieldset>
+			<legend>Novo/Editar X</legend>
+			Definition List [dl] com um [label] à esquerda [dt] descrevendo cada campo ou conjunto de campos,
+			e um controle ou tabela de controles associados à direita [dd].
+		</fieldset>
+		<hr>
+		<fieldset>
+			<legend>Variáveis associadas (showVar.php)</legend>
+			Caso addX.php esteja editando um registro existente, para o qual já existam variáveis associadas,
+			estas aparecerão aqui. Cada variável pode ser editada (<img src='icon/edit.png'>editVar.php), que joga o resultado de volta
+			através de showVarId.php.
+		</fieldset>
+		<hr>
+		<fieldset>
+			<legend>Escolha um formulário (embedForm.php -&gt; drawForm.php | browseForm.php)</legend>
+			O formulário selecionado abrirá numa [div] aqui, ou em outra janela/aba, conforme especificado
+			nas configurações. Se alguma variável do formulário estiver presente nas Variáveis associadas,
+			mostra um botão <img src='icon/eye.png'> para visualizar a mesma naquela seção.
+		</fieldset>
+	</fieldset>
+	<img src='icon/whsp.png'>
+	<fieldset>
+		<legend>build_cmb.php</legend>
+		Constrói o [input] seguido de botão (+), que abre um [select] com uma lista de opções, os itens
+		associados a outras tabelas através de chaves estrangeiras (foreign keys), também conhecidos como
+		"lookup fields". A estrutura, semelhante a um comboBox, foi nomeada _cmb.
+	</fieldset>
+	<fieldset>
+		<legend>build_mm.php</legend>
+		Constrói a entrada de dados formada por um build_cmb ligado a um multi-select através de botões de
+		inserção (&gt;&gt;) e retirada (&lt;&lt;) de itens, além de botões para reordenar os itens selecionados à direita.
+		Este tipo de relacionamento envolve múltiplos itens da tabela principal (a tabela sendo editada) se
+		ligando a múltiplos itens da tabela secundária (a que oferece a lista de seleção), o que por sua vez
+		exige uma terceira tabela. Este arranjo, muitos-para-muitos, nomeia o _mm.<BR><BR>
+		Essa estrutura é construída no código PHP, pela inserção de um<BR>
+		<code>include('build_mm.php');</code><BR>
+		precedido de algumas variáveis que o configuram. Essas variáveis são:
+		<ul>
+			<li>$mmLabCode: Título+Hint(Tooltip, texto que aparece no (?)) da estrutura</li>
+			<li>$mmLabelH: Título da estrutura (caso não seja usado acima -> tendência é desaparecer? Ou permanecer, caso estruturas diferentes tenham o mesmo título, mas (?) diferentes, p.ex.)</li>
+			<li>$mmLabel1: Título da caixa de seleção (à esquerda)</li>
+			<li>$mmLabel2: Título da caixa que guarda os itens já selecionados (à direita)</li>
+			<li>$who: Usado na construção do 'name' das diferentes partes da estrutura: txt_, div_, hid_, val_, etc. Onde _ é substituído pelo nome em questão</li>
+			<li>$mmQuery: Especifica a query a ser usada em build_mm (para mostrar itens já selecionados, ao editar) e em getLike.php (para mostrar a lista de itens para o usuário escolher)</li>
+			<li>$mmTableName: (NÃO ESTÁ SENDO USADO)</li>
+			<li>$mmTableLink: decomposto em duas partes (ex: 'taxespec.espec'):
+				<ul>
+					<li>$mmTableLinkCol (ex: 'espec')</li>
+					<li>$mmTableLinkTab (ex: 'taxespec')</li>
+				</ul>
+			</li>
+		</ul>
+		Essas variáveis ($mmTableLinkCol e $mmTableLinkTab) são usadas para formar uma terceira,<BR>
+		<code>$hidmmData</code><BR>
+		onde 'hid' indica um input oculto, que o usuário não enxerga, formado pela concatenação dos seguintes valores:
+		<ul>
+			<li>$mmTableLinkTab; -- a tabela de ligação ou tabela auxiliar</li>
+			<li>$tabela; -- a tabela pai = campo de comparação</li>
+			<li>$mmTableLinkCol -- outros campos com restante dos dados</li>
+			<li>,ordem;$ordem -- se a ordem dos dados é ou não relevante</li>
+			<li>;$who -- o nome do controle como especificado acima)</li>
+		</ul>
+		Um exemplo (Tabela Especímenes, campo "outros coletores"):<BR>
+		<code>$mmLabCode = 'esp.outcol'; // neste caso e nos dois abaixo, a função txt() busca nos arquivos de tradução<BR>
+		$mmLabel1 = txt('esp.coldisp');<BR>
+		$mmLabel2 = txt('esp.colsel');<BR>
+		$who = 'cols';<BR>
+		$mmQuery = 'pess1';<BR>
+		$mmTableName = 'pess';<BR>
+		$mmTableLink = 'espcols.col';<BR>
+		include('build_mm.php');<BR></code>
+		<BR>A tabela esp (especímenes) tem um campo para o coletor principal, que muitas vezes é o único coletor. Na existência de outros coletores, eles vão para outra tabela, espcols, com 3 campos principais: esp (o id do especímene), col (o id do coletor) e ordem (a posição do coletor na lista de 'outros coletores'). Assim, $hidmmData fica:<BR>
+		'espcols;esp;col,ordem;ordem;cols'<BR>
+		<!--'espcols;esp;esp,col,ordem;ordem;cols'<BR-->
+		<BR>Caso haja mais de um controle build_mm na mesma página, os dados em $hidmmData serão separados por um 'pipe' (|).<BR>
+		Caso haja um campo extra associado aos itens inseridos neste controle (p.ex. número de tombamento para cada herbário em addEsp.php), um sexto campo entra no fim de $hidmmData, também separado por ponto-e-vírgula.<BR>
+		<!--espvern;esp;vern;;verns|espherb;esp;herb;;herbs;tomb|espcols;esp;col,ordem;ordem;cols;tomb-->
+		
+		<!--taxespec;tax;espec,ordem;ordem;especs|taxsin;tax;sin;;sins|espvern;tax;vern;;verns-->
+	</fieldset>
+	<img src='icon/whsp.png'>
+	<fieldset>
+		<legend>getTable.php</legend>
+		desenha a tabela principal,
+		salva os filtros estáticos.
+	</fieldset>
+	<fieldset>
+		<legend>markTable.php</legend>
+		seleciona ou desseleciona uma ou mais linhas da tabela principal, e joga o resultado para divMsg.
+	</fieldset>
+	<fieldset>
+		<legend>getLike.php</legend>
+		faz a busca para o build_cmb e build_mm.
+	</fieldset>
+	<img src='icon/whsp.png'>
+	<fieldset>
+		<legend>browseForm.php</legend>
+		Mostra um formulário quando o mesmo aparece numa janela ou aba próprias.
+	</fieldset>
+	<fieldset>
+		<legend>embedForm.php</legend>
+		Insere o formulário no meio de uma instância de addX.php.
+	</fieldset>
+	<fieldset>
+		<legend>drawForm.php</legend>
+		Desenha o formulário, seja ele chamado por browseForm.php ou por embedForm.php.
+	</fieldset>
+	<img src='icon/whsp.png'>
+	<fieldset>
+		<legend>showVar.php</legend>
+		Mostra todas as variáveis relacionadas ao item sendo editado em addX.php.
+	</fieldset>
+	<fieldset>
+		<legend>showVarId.php</legend>
+		Atualiza apenas um dos itens mostrados por showVar.php (via AJAX).
+	</fieldset>
+	<fieldset>
+		<legend>editVar.php</legend>
+		Desenha o diálogo de edição da variável, cujo resultado será devolvido em showVarId.php.
+	</fieldset>
+	<img src='icon/whsp.png'>
+	<fieldset>
+		<legend>funcoes.js</legend>
+		Gaveta-geral de funções javascript, a ser separada depois para otimizar cada página.
+	</fieldset>
+	<img src='icon/whsp.png'>
+	<fieldset>
+		<legend>index.php</legend>
+		Tela de login
+	</fieldset>
+	<fieldset>
+		<legend>process_login.php</legend>
+		Processa o login, junto com register.php, register_sucess.php
+	</fieldset>
+	<fieldset>
+		<legend>logout.php</legend>
+		Arquivo que faz o logout do usuário.
+	</fieldset>
+	<fieldset>
+		<legend>error.php</legend>
+		Exibe possíveis erros durante o processo de login.
+	</fieldset>
+	<fieldset>
+		<legend>debug.php</legend>
+		Mostra as informações de phpinfo().
+	</fieldset>
+	<img src='icon/whsp.png'>
+	<fieldset>
+		<legend>cssDuckeWiki.css</legend>
+		Configurações css gerais. A ser separado futuramente?
+	</fieldset>
+	<fieldset>
+		<legend>coisas_txt??</legend>
+		Arquivos de linguagem, ainda bastante incompletos.
+	</fieldset>
+	<fieldset>
+		<legend>docs.html</legend>
+		Este arquivo.
+	</fieldset>
+	<img src='icon/whsp.png'>
+	<fieldset>
+		<legend>Convenções</legend>
+		Caracteres chineses usados para não misturar com | / : , . ; etc<BR>
+		件 separa itens numa lista<BR>
+		号 separa um id de outro número/código no mesmo item<BR>
+		示 separa a parte invisível (id+número/código) da parte visível (texto)<BR>
+		<BR><BR>
+		<fieldset>
+		<legend>Ainda não completamente implementado:</legend>
+		<fieldset>
+			<legend>addX.php</legend>
+			X é o nome da tabela começando com letra maiúscula.<BR>
+			Exs: tabela esp -> addEsp; tabela hab -> addHab<BR>
+			Em cada um desses, o form principal deve se chamar frmX.<BR><BR>
+			<fieldset>
+				<legend>variáveis comuns</legend>
+				$edit é o id do registro sendo editado
+			</fieldset>
+		</fieldset>
+		<BR>
+		As tabelas intermediárias das relações muitos-para-muitos recebem o nome de uma das tabelas envolvidas, seguida de um segundo nome, que pode ser o nome da segunda tabela ou de um campo ou ainda outra coisa.<BR>
+		Exs: espherb -> esp+herb; espcols -> esp+pess (coletores); habtax -> hab+tax (deveria se chamar taxhab?)<BR><BR>
+		Nessas tabelas, o campo relacionado à primeira tabela deve ter o mesmo nome da tabela.<BR>
+		Exs: espcols.esp; espherb.esp; locpai.loc; plesp.pl<BR><BR>
+		O campo secundário pode ou não ter o mesmo nome da tabela secundária.<BR>
+		Exs. onde tem: espherb.herb; plesp.esp<BR>
+		Exs. onde não tem: locpai.pai; espcols.col -> colet? col geralmente é coluna. Mas coletor é mais usado. col Coletor e colu, coluna, co, cln, i, j, c... coluna?<BR>
+		</fieldset>
+	</fieldset>
+	<img src='icon/whsp.png'>
+	<fieldset>
+		<legend>Funções comuns</legend>
+		<code>&lt;body onload='aoCarregar($edit)'&gt;</code><BR>
+		Ao carregar o form:<BR>
+		1) se não estiver editando, chama refill() para preencher os valores a partir do Storage<BR>
+		2) se estiver editando, esses valores terão sido preenchidos na chamada de updateRow($tabela,$edit)<BR>
+		3) o foco (cursor piscando) é colocado no primeiro controle editável<BR>
+		4) se houver radioButtons em um form (parâmetro frmid=), chama a função prepFormRadios(), que permite que sejam desmarcados com um clique do mouse<BR><BR>
+		<code>function fechaLogo(id,who='',texto='') {<BR>
+			&nbsp;window.opener.handlePopupResult(id,who,texto);<BR>
+			&nbsp;window.close();<BR>
+		}</code><BR>
+		Se estiver editando, e o parâmetro close=1 estiver presente,<BR>
+		<code>&lt;body onload='aoCarregar(\"$edit\")'&gt;</code><BR>
+		será substituído por<BR>
+		<code>&lt;body onload='fechaLogo($edit)'&gt;</code><BR>
+		o que fecha a janela logo após fazer as modificações do post<BR><BR>
+		<code>function handlePopupResult(id,who,texto)</code><BR>
+		Função chamada por uma janela popup, para mostrar as modificações na janela que a chamou.<BR>
+		Ex: Quando main.php chama addX.php para editar um registro de uma tabela, addX.php chamará, dentro de fechaLogo(), <code>window.opener.handlePopupResult</code> (ou seja, handlePopupResult de main.php). Ali as modificações feitas em addX.php serão exibidas na tabela visível.<BR>
+	</fieldset>
+	<img src='icon/whsp.png'>
+</body>
+</html>

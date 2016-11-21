@@ -1,0 +1,61 @@
+<html>
+<head>
+<script type='text/javascript'>
+function load() {
+	var row1 = document.getElementById('tr1Main');
+	var div = document.getElementById('divTable');
+	var i, c, tds1 = row1.getElementsByTagName('td');
+	var w = document.getElementById('tblMain').offsetWidth; // 262
+	//var w = document.getElementById('tblMain').clientWidth; // 261
+	//alert(w);
+	for (i=0; i<tds1.length; i++) {
+		c = row1.cells[i].offsetWidth;
+		div.style.width = w + 200-c;
+		row1.cells[i].style.width='200px';
+		w = document.getElementById('tblMain').offsetWidth; // 262
+		alert(w);
+	}
+}
+</script>
+<style>
+table, td, tr {
+	border:1px solid black;
+	border-collapse:collapse;
+	font-family:Arial,Verdana,sans-serif;
+	font-size:14px;
+	table-layout:auto;
+}
+div {
+	background-color:#F00;
+}
+</style>
+</head>
+<body onload='load()'>
+	<div id='divTable'>
+		<table id='tblMain'>
+			<tr id='tr1Main'>
+				<td>col1</td>
+				<td>col2</td>
+				<td>col3</td>
+				<td>col4</td>
+				<td>col5</td>
+				<td>col6</td>
+				<td>col7</td>
+				<td>col8</td>
+				<td>col9</td>
+			</tr>
+			<tr>
+				<td>A</td>
+				<td>B</td>
+				<td>C</td>
+				<td>D</td>
+				<td>E</td>
+				<td>F</td>
+				<td>G</td>
+				<td>H</td>
+				<td>I</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>
