@@ -16,3 +16,4 @@ USO
 		Iniciar o apache
 		URL: localhost/duckewiki
 		Registrar o seu novo usuário e começar a explorar a base.
+		admin@gmail.com   Admin123  (este usuário está cadastrado em Projetos) e pode ver dados de Plantas e Especimenes

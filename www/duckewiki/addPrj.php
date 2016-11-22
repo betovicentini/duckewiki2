@@ -100,7 +100,7 @@ function aoCarregar(edit) {
 			$divRes = '';
 			if (!empty($post)) {
 				$v1 = $_SESSION['user_id'];
-				$v2 = date('d/m/Y H:i:s');
+				$v2 = date('Y-m-d H:i:s');
 				$v3 = get('txtnome');
 				$v4 = get('txturl');
 				$v5 = get('txtfinanc');
@@ -135,9 +135,19 @@ function aoCarregar(edit) {
 					} else { // nada mudou na tabela principal
 						$divRes = "<div id='divSucesso' style='background-color:#FF0000'>Não há mudanças a atualizar!</div>";
 					}
-					atualizaSubTabela($subTabela,$subLkpField,$subFields,$subOrder,"mmVal$subWho"."Std",$divRes1);
+
+					$MMs = explode('|',get('hidmmData'));
+					foreach ($MMs as $MM) {
+						echo "<BR><BR>$MM<BR><BR>";
+						$M = explode(';',$MM);
+						if (atualizaSubTabela($M,$divRes1)) {
+							$divRes.=$divRes1;
+						}
+					}
+					
+					//atualizaSubTabela($subTabela,$subLkpField,$subFields,$subOrder,"mmVal$subWho"."Std",$divRes1);
 					//atualizaSubTabela('espcols','esp','col,ordem','ordem','mmValcolsStd',$divRes1);
-					$divRes.=$divRes1;
+					//$divRes.=$divRes1;
 				} else { // não está editando -> insere
 					switch (registroExiste($tabela)) {
 						case 'f' :
@@ -238,17 +248,32 @@ function aoCarregar(edit) {
 					<input name='txtprocs' type='text' size=10 value=<?="'$procs'"?> oninput='store(this)' />
 				</dd>
 			</dl>
+		
 <!--// logo
 // equipe:-->
 			<?php
-				$mmLabelH = 'Equipe';
-				$mmLabel1 = 'Pessoas disponíveis';
-				$mmLabel2 = 'Pessoas selecionadas';
-				$who = 'equipe';
-				$mmQuery = 'pess3';
-				$mmTableLink = 'prjpess.pess';
-				include('build_mm.php');
+				//$mmLabelH = 'Equipe';
+				//$mmLabel1 = 'Pessoas disponíveis';
+				//$mmLabel2 = 'Pessoas selecionadas';
+				//$who = 'equipe';
+				//$mmQuery = 'pess3';
+				//$mmTableLink = 'prjpess.pess';
+				//include('build_mm.php');
 
+$mmLabCode = 'equipe';
+//$mmLabelH = txt('verns');
+$mmLabel1 = 'Pessoas disponíveis';
+$mmLabel2 = 'Pessoas selecionadas';
+$who = 'equipe';
+//$mmTableName = 'pess';
+$mmQuery = 'pess3';
+$mmTableLink = 'prjpess.pess';
+include('build_mm.php');
+	
+echo "
+<div>
+<input type='hidden' name='hidmmData' value='$hidmmData' />
+</div>";
 				/*$cmbLabel = 'Formulário morfologia';
 				$cmbTableName = 'form';
 				$cmbFieldNames = 'nome';

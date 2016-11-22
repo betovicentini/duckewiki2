@@ -22,7 +22,8 @@ if ($what != '') {
 	}
 	//echo "$query<BR><BR>";
 	if (substr($query,0,4) == 'pess') { // long PESS
-		$q = "select id,abrev||' ('||prenome||' '''||segundonome||''' '||sobrenome||')'
+	//abrev||' ('||prenome||' '||segundonome||' '||sobrenome||')'
+		$q = "select id,concat(abrev,' (',prenome,' ',segundonome,' ',sobrenome,')')
 		from pess
 		where
 		unaccent(abrev) ilike unaccent('%$what%') or
@@ -32,7 +33,8 @@ if ($what != '') {
 		order by abrev,prenome";
 	} else
 	if ($query == 'herb') { // long HERB
-		$q = "select id,sigla||' ('||nome||')'
+		//sigla||' ('||nome||')'
+		$q = "select id,concat(sigla,' (',nome,')')
 		from herb
 		where
 		unaccent(sigla) ilike unaccent('%$what%') or
@@ -46,7 +48,8 @@ if ($what != '') {
 		unaccent(v.nome) ilike unaccent('%$what%')";
 	} else
 	if ($query == 'taxespec') { // long PESS
-		$q = "select id,abrev||' ('||prenome||' '''||segundonome||''' '||sobrenome||')'
+		//		abrev||' ('||prenome||' '||segundonome||' '||sobrenome||')'
+		$q = "select id,concat(abrev,' (',prenome,' ',segundonome,' ',sobrenome,')')
 		from pess
 		where
 		unaccent(abrev) ilike unaccent('%$what%') or

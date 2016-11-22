@@ -80,11 +80,11 @@ $divRes = '';
 
 if (!empty($post)) {
 	print_r($post);
-	echo "<BR><BR>";		
+	echo "<BR><BR>";
 
 	$pessoa = new Pessoa(
 	$_SESSION['user_id'],
-	date('d/m/Y H:i:s'),
+	date('Y-m-d H:i:s'),
 	
 	get('txtprenome'),
 	get('txtsobrenome'),
@@ -194,7 +194,7 @@ echoHeader();
 		<input name='txtabrev' type='text' value=<?="'$abrev'"?> oninput='store(this)' />
 	</dd>
 </dl>
-<?php		
+<?php
 $mmLabelH = txt('taxespec');
 $mmLabel1 = txt('taxdisp');
 $mmLabel2 = txt('taxsel');
