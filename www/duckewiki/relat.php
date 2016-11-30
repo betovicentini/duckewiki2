@@ -10,7 +10,7 @@ $title = txt('report');
 echo "<title>$title</title>";
 ?>
 <link rel="stylesheet" type="text/css" href="cssDuckeWiki.css">
-<script src='funcoes.js'></script>
+<script src='js/funcoes.js'></script>
 <script type='text/javascript'>
 function drag(e) {
 	e.dataTransfer.setData("text",e.target.id);

@@ -50,8 +50,8 @@
 	<head>
 		<meta charset='UTF-8'>
 		<title><?=$title?></title>
-		<link rel="stylesheet" type="text/css" href="cssDuckeWiki.css">
-		<script src='funcoes.js'></script>
+		<link rel="stylesheet" type="text/css" href="css/cssDuckeWiki.css">
+		<script src='js/funcoes.js'></script>
 <script>
 /*function modoEdit() {
 	document.body.style.background = '#D0B060';

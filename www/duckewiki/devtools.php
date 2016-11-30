@@ -1,8 +1,8 @@
 <?php
 ini_set("memory_limit","-1");
 ini_set("mysql.allow_persistent","-1");
-//include_once '../../includes_pl/db_connect.php';
-//include_once '../../includes_pl/functions.php';
+include_once '../../includes_pl/db_connect.php';
+include_once '../../includes_pl/functions.php';
 //require_once './model/am.php';
 session_start();
 //sec_session_start();
@@ -11,8 +11,8 @@ session_start();
 <html lang='BR'>
 	<head>
 		<meta charset='UTF-8'>
-		<title><?= $title ?> </title>
-		<script src='funcoes.js'></script>
+		<?php echo "<title>".txt('title')."</title>"; ?>
+		<script src='js/funcoes.js'></script>
 		<link rel="stylesheet" type="text/css" href="cssDuckeWiki.css">
 		<style>
 div.t {
@@ -84,18 +84,36 @@ function getfilerefs(filename) {
 }
 function  enterdef(file) {
 	var curtxt = document.getElementById("curdefinition").innerHTML;
-	var newtxt = prompt("Edite a definição", curtxt);
-	if (newtxt != '' && newtxt != null) { 
+	var newtxt = "<textarea id='adefinicao' row=5 col=100 style='background-color: pink;'>"+curtxt+"</textarea>";
+	document.getElementById("curdefinition").innerHTML = newtxt;
+	document.getElementById("defbut").innerHTML= "<input type='button'  onclick=\"javascript: savedef('"+file+"');\" value='Salvar definição' >";
+    //var newtxt = prompt("Edite a definição", curtxt);
+	//if (newtxt != '' && newtxt != null) { 
+	//	var xhttp = new XMLHttpRequest();
+		//xhttp.onreadystatechange = function() {
+		//	if (xhttp.readyState == 4 && xhttp.status == 200) {
+		//	  document.getElementById("curdefinition").innerHTML = xhttp.responseText;
+		//	}
+		//};
+	  //var url = 'devtoolsdefin_edit.php?file='+file+"&definition="+newtxt;
+	 //xhttp.open("GET", url, true);
+	  //xhttp.send();
+	//}
+}
+function  savedef(file) {
+		var curtxt = document.getElementById("adefinicao").value;
+		//alert(curtxt);
 		var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function() {
 			if (xhttp.readyState == 4 && xhttp.status == 200) {
-			  document.getElementById("curdefinition").innerHTML = xhttp.responseText;
+				document.getElementById("curdefinition").innerHTML = curtxt;
+				document.getElementById("defbut").innerHTML= "<input type='button'  onclick=\"javascript: enterdef('"+file+"');\" value='Editar definição' >";
 			}
 		};
-	  var url = 'devtoolsdefin.php?file='+file+"&definition="+newtxt;
-	  xhttp.open("GET", url, true);
-	  xhttp.send();
-	}
+	    var url = 'devtoolsdefin.php?file='+file+"&definition="+curtxt;
+	    xhttp.open("GET", url, true);
+	    xhttp.send();
+	//}
 }
 
 function getfunrefs(funname, isjava, arquivo) {
@@ -123,28 +141,28 @@ function pegaomodelo(funname, isfun, arquivo) {
   xhttp.send();
 
 }
-function mostracodigo(funname) {
+function mostracodigo(funname,linenum) {
 //alert(funname);
-	var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (xhttp.readyState == 4 && xhttp.status == 200) {
-      var otitulo = "Código do arquivo "+funname;
-      var myWindow = window.open("", otitulo, "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=200,width=700,height=400,menubar=yes");
-    myWindow.document.write(xhttp.responseText);
-    }
-  };
-  var url = 'devtoolsmostracode.php?file='+funname;
-  xhttp.open("GET", url, true);
-  xhttp.send();
+//var xhttp = new XMLHttpRequest();
+  //xhttp.onreadystatechange = function() {
+    //if (xhttp.readyState == 4 && xhttp.status == 200) {
+      //var otitulo = "Código do arquivo "+funname;
+      //var myWindow = window.open("", otitulo, "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=200,width=700,height=400,menubar=yes");
+    //myWindow.document.write(xhttp.responseText);
+    //}
+  //};
+  var url = 'devtoolsmostracode.php?file='+funname+'&linenum='+(linenum-1);
+  var otitulo = "Código do arquivo "+funname;
+  window.open(url, otitulo, "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=200,width=700,height=400,menubar=yes");
+  //window.open(url);
+  //xhttp.open("GET", url, true);
+  //xhttp.send();
     
 }
-
 </script>
-	</head>
+</head>
 <body>
 <?php
-
-
 $resultado = array();
 $phpfiles = array();
 
@@ -496,6 +514,8 @@ $arq ="help/file_relations.json";
 file_put_contents($arq, json_encode($resultado,TRUE));
 
 echo"
+<div>
+<h4>Arquivos & Funções</h4>
 <div class='t' >
 <h3>Arquivos PHP</h3>
 <div style='background-color: lightblue;'>
@@ -578,8 +598,8 @@ echo "</ul>";
 echo "
 </div>
 </div>
+</div>
 <div class='t2' id='resultado'>
-
 </div>
 ";
 //echo "<br><div ><pre>";print_r($modelosfunctions); echo "</pre></div>";

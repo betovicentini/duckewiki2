@@ -23,8 +23,8 @@ if ($edit == '') {
 <head>
 <meta charset='UTF-8'>
 <title> <?php echo $title ?></title>		
-<link rel="stylesheet" type="text/css" href="cssDuckeWiki.css">
-<script src='funcoes.js'></script>
+<link rel="stylesheet" type="text/css" href="css/cssDuckeWiki.css">
+<script src='js/funcoes.js'></script>
 <script>
 function requiredKeyUp() {
 	//btnSave.disabled = (txtNome.value == '') || (txtSobrenome.value == '');

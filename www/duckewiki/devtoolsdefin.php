@@ -12,11 +12,15 @@ if ($tem) {
 	if (empty($kkk) || $kkk!=$definition) {
 		$ohelp[$file] = $definition;
 		file_put_contents($arq, json_encode($ohelp,TRUE));
-	} 
+		echo "Definição salva";
+	}  else {
+		echo "Você não mudou nada";
+	}
 } else {
 	$res = array($file => $definition);
 	file_put_contents($arq, json_encode($res,TRUE));
+	echo "Definição salva";
 }
-echo $definition;
+//echo $definition;
 
 ?>

@@ -24,8 +24,8 @@ sec_session_start();
 <head>
 <meta charset='UTF-8'>
 <title>Novo/Editar Formulário</title>
-<link rel="stylesheet" type="text/css" href="cssDuckeWiki.css">
-<script src='funcoes.js'></script>
+<link rel="stylesheet" type="text/css" href="css/cssDuckeWiki.css">
+<script src='js/funcoes.js'></script>
 <script type='text/javascript'>
 function selFormsChange1() {
 	var F = document.getElementById('frm');

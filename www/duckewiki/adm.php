@@ -44,7 +44,7 @@ um botão para (re)contar, outro pra conferir contagem (opção de auto-corrigir
 */
 
 ?>
-<link rel="stylesheet" type="text/css" href="cssDuckeWiki.css">
+<link rel="stylesheet" type="text/css" href="css/cssDuckeWiki.css">
 <style>
 td {
 	border-left:1px solid black;
@@ -52,7 +52,7 @@ td {
 	padding:5px;
 }
 </style>
-<script src='funcoes.js'></script>
+<script src='js/funcoes.js'></script>
 <script type='text/javascript'>
 var evtSource;
 var divprg;

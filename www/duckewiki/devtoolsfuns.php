@@ -27,8 +27,8 @@ if ($isjava==0) {
 //$dd = getcwd( );
 $arq2 = "help/devhelp.json";
 $tem2 = file_exists($arq2);
-$bt = "<input type='button'  onclick=\"javascript: enterdef('".$function."');\" value='Editar definição' ><br >";
-$thedef = "<small>arquivo: ".$ondesta."[@ line: ".$linenum."]</small>&nbsp;<input type='button'  onclick=\"javascript:mostracodigo('".$ondesta."');\" value='Mostra código'  ><br ><br >";
+$bt = "<span id='defbut'><input type='button'  onclick=\"javascript: enterdef('".$function."');\" value='Editar definição'  ></span><br >";
+$thedef = "<small>arquivo: ".$ondesta."[@ line: ".$linenum."]</small>&nbsp;<input type='button'  onclick=\"javascript:mostracodigo('".$ondesta."',".$linenum.");\" value='Editar código'  ><br ><br >";
 if ($tem2) {
 	$input2 = @file_get_contents($arq2);
 	$ohelp2 = json_decode($input2, True);

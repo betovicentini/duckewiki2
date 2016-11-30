@@ -16,8 +16,8 @@ if ($edit == '') {
 	<head>
 		<meta charset='UTF-8'>
 		<title><?php $title ?> </title>
-		<link rel="stylesheet" type="text/css" href="cssDuckeWiki.css">
-		<script src='funcoes.js'></script>
+		<link rel="stylesheet" type="text/css" href="css/cssDuckeWiki.css">
+		<script src='js/funcoes.js'></script>
 <script>
 function makealias(str) {
 	var txtalias = document.getElementById('txtnomealias');

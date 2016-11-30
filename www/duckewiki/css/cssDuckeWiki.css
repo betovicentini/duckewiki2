@@ -54,6 +54,9 @@ table {
 #divFoot {
 	border:0px solid #0000FF;
 }
+#divMnuTable {
+	border:1px solid #000;
+}
 #tblBody {
 	border-bottom:0px solid black;
 	border-top:0px solid black;
@@ -65,6 +68,12 @@ table {
 tr {
 	text-align:center;
 }
+#tblHead td {
+	border-left:1px solid black;
+}
+#tblBody td {
+	border-left:1px solid black;
+}
 tr:nth-child(odd) {
 	padding:3px;
 	background-color:#FFFFFF;
@@ -75,9 +84,9 @@ tr:nth-child(even) {
 }
 /*tr:hover {background-color: #F00}*/
 td {
-	/*border-bottom:0px solid black;
-	border-top:0px solid black;
-	border-bottom:0px solid black;*/
+	/*border-top:0px solid black;
+	border-bottom:0px solid black;
+	border-left:1px solid black;*/
 	border:0px solid black;
 	border-collapse:collapse;
 }
@@ -88,6 +97,7 @@ button {
 	padding:2px 3px 2px 3px;
 	margin:1px;
 	border-radius:5px;
+	cursor: pointer;
 }
 select,button {
 	margin-bottom:1px;
@@ -155,6 +165,22 @@ textarea {
 	margin-bottom:1px;
 }
 
+.tooltip {
+	text-align: left;
+	display: none;
+	position: absolute;
+	background: #ffe;
+	border: 1px solid #eed;
+	border-radius: 4px;
+	padding: 2px 4px;
+}
+.tooltip li {
+	font-size:12px;
+}
+
+:hover + .tooltip {
+	display: inline;
+}
 .langs {
 	position:absolute;
 	right:0px;
@@ -225,10 +251,53 @@ textarea {
 	padding-left:4px;
 	padding-right:4px;
 }
+/*#popup_container {
+	font-family: Arial, sans-serif;
+	font-size: 15px;
+	min-width: 300px;
+	max-width: 600px;
+	background: #FFF;
+	border: solid 5px #999;
+	text-align:center;
+	color: #000;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}*/
 div.drag {
 	border:1px solid #000;
 	padding:5px;
 	margin:5px;
 	cursor:move;
+}
+
+input:valid {
+	border: 1px solid #000;
+	border-radius: 4px;
+}
+
+input:invalid {
+	border: 2px solid #F00;
+	border-radius: 4px;
+}
+
+select:valid {
+	border: 1px solid #000;
+	border-radius: 4px;
+}
+
+select:invalid {
+	border: 2px solid #F00;
+	border-radius: 4px;
+}
+
+radio:valid {
+	border: 1px solid #000;
+	border-radius: 4px;
+}
+
+radio:invalid {
+	border: 2px solid #F00;
+	border-radius: 4px;
 }
 

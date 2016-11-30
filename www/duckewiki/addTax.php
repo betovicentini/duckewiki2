@@ -16,8 +16,8 @@ $corBG = $_SESSION['cfg.corbut'];
 	<head>
 		<meta charset='UTF-8'>
 		<title> <?= $title ?> </title>
-		<link rel="stylesheet" type="text/css" href="cssDuckeWiki.css">
-		<script src='funcoes.js'></script>
+		<link rel="stylesheet" type="text/css" href="css/cssDuckeWiki.css">
+		<script src='js/funcoes.js'></script>
 <script>
 function getVals(text,sep,titles) { // pega os valores das colunas especificadas (titles) na primeira linha abaixo dos títulos
     // os titles devem estar na mesma ordem encontrada em text (mais rápido)

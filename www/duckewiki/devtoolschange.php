@@ -7,13 +7,16 @@ $file = $_GET['file'];
 //$dd = getcwd( );
 $arq = "help/devhelp.json";
 $tem = file_exists($arq);
-$bt = "<br><input type='button'  onclick=\"javascript: enterdef('".$file."');\" value='Editar definição'  >&nbsp;<input type='button'  onclick=\"javascript:mostracodigo('".$file."');\" value='Mostra código'  >";
+$bt = "<br><span id='defbut'><input type='button'  onclick=\"javascript: enterdef('".$file."');\" value='Editar definição'  ></span>&nbsp;<input type='button'  onclick=\"javascript:mostracodigo('".$file."',2);\" value='Editar o código'  >";
 if ($tem) {
+	//echo "nnnn testando aqui".$tem;
+
 	$input = @file_get_contents($arq);
 	$ohelp = json_decode($input, True);
 	$kkk = @$ohelp[$file];
+	//echo "nnnn testando aqui".$tem;
 	if (!empty($kkk)) {
-		$thedef = "<span id='curdefinition' >".$kkk."</span>&nbsp;".$bt;
+		$thedef = "<span id='curdefinition' >aaaa ".$kkk."</span>&nbsp;".$bt;
 	} else {
 		$thedef =  "<span id='curdefinition' >Definicao do arquivo não inserida</span>&nbsp;".$bt;
 	}

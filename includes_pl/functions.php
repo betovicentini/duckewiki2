@@ -611,7 +611,14 @@ function insereSubTabelas($hidData,$edit,&$divRes) {
 		echo "novos: [$mmValStd]<BR>";
 		if ($mmValStd != '') {
 			$itens = explode(';',$mmValStd);
-			$q1 = "insert into $tabelaAux (addby,adddate,$campoCompara,$campoOutros) values ";
+				if ($campoOrder != '') {
+					$q1 = "insert into $tabelaAux (addby,adddate,$campoCompara,$campoOutros,$campoOrder) values ";
+//					$q1.="($v1,'$v2',$edit,$item,$ordem),";
+				} else {
+					$q1 = "insert into $tabelaAux (addby,adddate,$campoCompara,$campoOutros) values ";
+//					$q1.="($v1,'$v2',$edit,$item),";
+				}
+//			$q1 = "insert into $tabelaAux (addby,adddate,$campoCompara,$campoOutros) values ";
 			$ordem = 1;
 			foreach ($itens as $item) {
 				$pos = strpos($item,'号');
@@ -1039,18 +1046,15 @@ function get($k) {
 //USA  PROXY SE VARIAVEIS DEFINIDAS
 //RETORNA ARRAY DO JSON DECODIFICADO
 function getsimplexml_load_file($url,$proxy,$proxyauth) {
-if (isset($proxy) && !empty($proxy) && $proxy!="") {
-$r_default_context = stream_context_get_default (array (
-     'http' => array(
-       'proxy' => $proxy,
-       'request_fulluri' => True,
-       'header' => "Proxy-Authorization: Basic ".$proxyauth //Here you are passing login details
-      ))
-);
-libxml_set_streams_context($r_default_context);
-}
-$sxml = simplexml_load_file($url);
-$json = json_encode($sxml);
-$array = json_decode($json,TRUE);
-return($array);
+	$curl = curl_init($url);
+	if (!empty($proxy)) {
+		curl_setopt($curl, CURLOPT_PROXY, $proxy); // TIRAR SE ESTIVER FORA DO INPA!!!
+		curl_setopt($curl, CURLOPT_PROXYUSERPWD, $proxyauth); // TIRAR SE ESTIVER FORA DO INPA!!!
+	}
+	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+	$curl_response = curl_exec($curl);
+	$sxml = simplexml_load_string($curl_response);
+	$json = json_encode($sxml);
+	$array = json_decode($json,TRUE);
+	return($array);
 }

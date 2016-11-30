@@ -23,8 +23,8 @@ $title = 'Importar CSV';
 <head>
 <meta charset='UTF-8'>
 <title><?= $title ?> </title>
-<link rel="stylesheet" type="text/css" href="cssDuckeWiki.css">
-<script src='funcoes.js'></script>
+<link rel="stylesheet" type="text/css" href="css/cssDuckeWiki.css">
+<script src='js/funcoes.js'></script>
 <script type='text/javascript'>
 var step=1, title, selEtc=null, optBD=null;
 var selFil, selCol, selLnk, btnNext, btnBack, btnUnir, btnDesunir;

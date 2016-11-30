@@ -650,7 +650,7 @@ if ($mostrar) { // daqui vai até o final
 			}
 		}
 		// mostra o sql
-		if ($_SESSION['user_id'] == 66) {
+		if ($_SESSION['user_id'] == $dev_userid) {
 			echo "$q<BR>";
 		}
 		$res = pg_query($conn,$q); // executa a query que desenhará a tabela

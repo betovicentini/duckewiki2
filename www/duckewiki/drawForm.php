@@ -1,4 +1,4 @@
-<script src='cor.js'></script>
+<script src='js/cor.js'></script>
 <?php
 // primeiro guarda as unidades disponíveis
 $q = "select * from varunit order by id";

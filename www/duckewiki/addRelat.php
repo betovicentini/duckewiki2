@@ -17,8 +17,8 @@ if ($edit == '') {
 }
 echo "<title>$title</title>";
 ?>
-<link rel="stylesheet" type="text/css" href="cssDuckeWiki.css">
-<script src='funcoes.js'></script>
+<link rel="stylesheet" type="text/css" href="css/cssDuckeWiki.css">
+<script src='js/funcoes.js'></script>
 <script type='text/javascript'>
 /*
 - Quando carrega do Storage, radio selecionado não apaga no primeiro, mas no segundo clique

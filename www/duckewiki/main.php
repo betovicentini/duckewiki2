@@ -439,7 +439,7 @@ $limit = getVarNoSession('limit','100');
 <head>
 <meta charset='UTF-8'>
 <?php echo "<title>".txt('title')."</title>"; ?>
-<script src='funcoes.js'></script>
+<script src='js/funcoes.js'></script>
 <script type='text/javascript'>
 var tabAtiva = null; // sendo usado?
 var sortedVar = null; // sendo usado?
@@ -1047,26 +1047,37 @@ function uploadCSV(who) {
 function btnClick(e,who) {
 	if (who == 'gps') {
 		document.getElementById('filGPS').click();
-	} else
-	if (who == 'csv') {
-		document.getElementById('filCSV').click();
-	} else
-	if (who == 'adm') {
-		callAdd('adm.php',800,0,1,1);
-	} else
-	if (e.ctrlKey || who == 'msg') {
-		var F = document.getElementById('frmMnu');
-		var offset = document.getElementById('hidOffset');
-		offset.value = 0; // cada tabela deve ser mostrada do início
-		addHidden(F,'table',who);
-		if (who != 'msg') {
-			addHidden(F,'sort','id');
-		} else {
-			addHidden(F,'sort','thread,adddate');
-		}
-		F.submit();
 	} else {
-		callAdd('add'+who.substr(0,1).toUpperCase()+who.substr(1)+'.php',800,0,1,1);
+		if (who == 'csv') {
+			document.getElementById('filCSV').click();
+		} else {
+			if (who == 'adm') {
+				callAdd('adm.php',800,0,1,1);
+			} else {
+				if (e.ctrlKey || who == 'msg') {
+					var F = document.getElementById('frmMnu');
+					var offset = document.getElementById('hidOffset');
+					offset.value = 0; // cada tabela deve ser mostrada do início
+					addHidden(F,'table',who);
+					if (who != 'msg') {
+						addHidden(F,'sort','id');
+					} else {
+						addHidden(F,'sort','thread,adddate');
+					}
+					F.submit();
+				} else {
+					if (who=='devtools') {
+						callAdd('devtools.php',800,0,1,1);
+					} else {
+						if (who=='help') {
+						callAdd('docs.html',800,0,1,1);
+						} else {
+								callAdd('add'+who.substr(0,1).toUpperCase()+who.substr(1)+'.php',800,0,1,1);
+						}
+					}
+				}
+			}
+		}
 	}
 }
 /** +micClick/+replyMsg = resultado do envio da mensagem */
@@ -1243,7 +1254,7 @@ function mapSee(lat,lon,loc,tax) {
 	}
 }
 </script>
-<link rel="stylesheet" type="text/css" href="cssDuckeWiki.css">
+<link rel="stylesheet" type="text/css" href="css/cssDuckeWiki.css">
 <?php
 pullCfg();
 echo "</head>
@@ -1330,7 +1341,7 @@ echo "<table id='tblBut'><tr style='background-color:rgba(0,0,0,0)'><td>";
 
 	//echo "<button style='$corbg' title='Relatórios' class='menu' type='button' onclick='callAdd(\"relat.php\",800,0,0,1)'><img src='icon16/$kit/relat.png' height=$l width=$l></button>\n";
 
-	echo "</td><td style='width:15%'></td><td>"; // espaço entre botões de formulários e os outros
+	echo "</td><td style='width:10%'></td><td>"; // espaço entre botões de formulários e os outros
 	$corbg = "background-color:$corBG";
 	echo "<button style='$corbg' title='Início' class='menu' type='submit' name='table' value='tables'><img src='icon16/$kit/home.png' height=$l width=$l></button>\n";
 	echo "<button style='$corbg' title='Configurações' class='menu' type='button' onclick='callAdd(\"config.php\",800,0,0,0)'><img src='icon16/$kit/cfg.png' height=$l width=$l></button>\n";
@@ -1350,9 +1361,11 @@ echo "<table id='tblBut'><tr style='background-color:rgba(0,0,0,0)'><td>";
 	echo "<input type='file' id='filGPS' style='display:none' onchange='uploadGPS(this)'>";
 	echo "<button style='$corbg' title='Importar arquivo de GPS' class='menu' type='button' onclick='btnClick(event,\"gps\")'>GPS</button>\n";
 	echo "<button style='$corbg' title='Importar arquivo CSV' class='menu' type='button' onclick='btnClick(event,\"csv\")'>CSV</button>\n";
-	if ($_SESSION['user_id'] == 66) {
+	if ($_SESSION['user_id'] == $dev_userid) {
 		echo "<button style='$corbg' title='Ferramentas administrativas' class='menu' type='button' onclick='btnClick(event,\"adm\")'>adm</button>\n";
 		echo "<button style='$corbg' title='Query' class='menu' type='button' onclick='promptQuery()'>qry</button>";
+		echo "<br /><button style='$corbg' title='doc1' class='menu' type='button' onclick='btnClick(event,\"devtools\")' >devtools</button>";
+		echo "<button style='$corbg' title='doc2' class='menu' type='button' onclick='btnClick(event,\"help\")' >doc</button>";
 	}
 	echo "</td></tr><tr style='background-color:rgba(0,0,0,0)'><td colspan=3>";
 	//echo "<BR>\n";

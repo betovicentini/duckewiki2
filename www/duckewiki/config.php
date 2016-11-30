@@ -14,9 +14,9 @@ echo "<!DOCTYPE html>
 $title = txt('cfg');
 echo "<title>$title</title>";
 ?>
-<link rel="stylesheet" type="text/css" href="cssDuckeWiki.css">
-<script src='funcoes.js'></script>
-<script src='cor.js'></script>
+<link rel="stylesheet" type="text/css" href="css/cssDuckeWiki.css">
+<script src='js/funcoes.js'></script>
+<script src='js/cor.js'></script>
 <script type='text/javascript'>
 /*function aoCarregar(arr) {
 	for (var i=0; i<arr.length; i++) {

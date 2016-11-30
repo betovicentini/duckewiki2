@@ -769,7 +769,7 @@ if ($mostrar) { // daqui vai até o final
 			}
 		}
 		// mostra o sql
-		if ($_SESSION['user_id'] == 66 && $showQuery) {
+		if ($_SESSION['user_id'] == $dev_userid && $showQuery) {
 			echo "$q<BR>";
 		}
 		echo "</div>\n"; // divText
