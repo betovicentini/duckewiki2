@@ -16,7 +16,7 @@ if ($tem) {
 	$kkk = @$ohelp[$file];
 	//echo "nnnn testando aqui".$tem;
 	if (!empty($kkk)) {
-		$thedef = "<span id='curdefinition' >aaaa ".$kkk."</span>&nbsp;".$bt;
+		$thedef = "<span id='curdefinition' >".$kkk."</span>&nbsp;".$bt;
 	} else {
 		$thedef =  "<span id='curdefinition' >Definicao do arquivo não inserida</span>&nbsp;".$bt;
 	}
